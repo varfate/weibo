@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>微博</title>
+  <style>
+    {# button {
+      margin: 0;
+      padding: 0;
+    }
+    .btn {
+      display: inline-block;
+      font-weight: 400;
+      text-align: center;
+      white-space: nowrap;
+      vertical-align: middle;
+      user-select: none;
+      border: 0 solid transparent;
+    }
+    .btn-primary {
+      color: #fff;
+      background-color: #007bff;
+      border-color: #007bff;
+    } #}
+    .t-c {
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <h1 class="t-c">欢迎加入微博</h1>
+  <h3 class="t-c">验证码为: {{ code }}, 5 分钟内有效</h3>
+</body>
+</html>
