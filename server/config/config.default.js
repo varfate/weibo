@@ -1,5 +1,8 @@
 'use strict';
 
+const chalk = require('chalk');
+const _ = require('lodash');
+
 module.exports = appInfo => ({
 
   keys: appInfo.name + '_{{keys}}',
@@ -32,5 +35,27 @@ module.exports = appInfo => ({
     csrf: {
       enable: false,
     },
+  },
+
+  jwt: {
+    secret: '123456',
+    enable: true,
+    ignore(ctx) {
+      const paths = [ '/user/login', '/user/register' ];
+      if (DEV) {
+        const tip = `${chalk.yellow('[ JWT ]')} --> ${
+          _.includes(paths, ctx.path)
+            ? chalk.green(ctx.path)
+            : chalk.red(ctx.path)
+        }`;
+        console.log(tip);
+      }
+      return _.includes(paths, ctx.path);
+    },
+  },
+
+  passportLocal: {
+    usernameField: 'email',
+    passwordField: 'password',
   },
 });

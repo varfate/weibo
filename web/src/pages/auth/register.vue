@@ -85,16 +85,15 @@ export default {
     submitHandler(e) {
       e.preventDefault();
       this.$axios({
-        url: '/user/signUp',
+        url: '/user/register',
         method: 'post',
         data: {
           ...this.model,
         },
-      })
-        .then((res) => {
-          console.log(res.data);
-        })
-        .catch(console.log);
+      }).then(() => {
+        this.$route.push('/');
+      // eslint-disable-next-line
+      }).catch(console.log);
     },
   },
 };

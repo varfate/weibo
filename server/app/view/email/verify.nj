@@ -6,24 +6,6 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>微博</title>
   <style>
-    {# button {
-      margin: 0;
-      padding: 0;
-    }
-    .btn {
-      display: inline-block;
-      font-weight: 400;
-      text-align: center;
-      white-space: nowrap;
-      vertical-align: middle;
-      user-select: none;
-      border: 0 solid transparent;
-    }
-    .btn-primary {
-      color: #fff;
-      background-color: #007bff;
-      border-color: #007bff;
-    } #}
     .t-c {
       text-align: center;
     }

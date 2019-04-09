@@ -1,6 +1,5 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import HomeWelcome from './pages/home/welcome.vue';
 
 Vue.use(Router);
 
@@ -9,28 +8,20 @@ export default new Router({
   base: process.env.BASE_URL,
   routes: [
     {
-      path: '/',
-      name: 'home',
-      component: HomeWelcome,
-    }, {
-      path: '/goods',
-      name: 'goods',
-      component: () => import('./pages/goods/list.vue'),
-    }, {
-      path: '/sign',
-      name: 'sign',
-      component: () => import('./pages/sign'),
+      path: '/auth',
+      name: 'auth',
+      component: () => import('./pages/auth'),
       children: [{
         // 登录
-        path: 'signUp',
-        name: 'signUp',
-        component: () => import('./pages/sign/signUp'),
+        path: 'login',
+        name: 'login',
+        component: () => import('./pages/auth/login'),
       }, {
         // 注册
-        path: 'signIn',
-        name: 'signIn',
-        alias: '/sign',
-        component: () => import('./pages/sign/signIn'),
+        path: 'register',
+        name: 'register',
+        alias: '/auth',
+        component: () => import('./pages/auth/register'),
       }],
     },
   ],

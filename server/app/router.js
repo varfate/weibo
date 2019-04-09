@@ -1,9 +1,14 @@
 'use strict';
 
 module.exports = app => {
-  const { router, controller } = app;
-  router.post('/user/signUp', controller.user.signUp);
-  router.post('/user/signIn', controller.user.signIn);
-  router.post('/email/verifyCode', controller.user.sendVerifyCode);
+  const { router } = app;
+  // 登录
+  router.post('/user/register', 'user.register');
+  // 注册
+  router.post('/user/login', app.passport.authenticate('local', {
+    successRedirect: null,
+  }));
+  // 发送验证码
+  router.post('/email/verifyCode', 'user.sendVerifyCode');
 };
 

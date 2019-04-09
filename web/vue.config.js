@@ -30,7 +30,7 @@ module.exports = {
       errors: true,
     },
     /**
-     * 开发环境 nginx 配置 $host 后报错
+     * ? 开发环境 nginx 配置 $host 后报错
      * https://github.com/gitpod-io/gitpod/issues/26
      */
     disableHostCheck: true,

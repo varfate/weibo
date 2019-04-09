@@ -16,6 +16,17 @@ module.exports = {
     timezone: '+08:00',
   },
 
+  email: {
+    host: 'smtp.163.com',
+    port: 465,
+    secureConnection: true,
+    from: 'do_you_like@163.com',
+    connectionTimeout: 30 * 1000,
+    auth: {
+      user: 'do_you_like@163.com',
+      // pass: 'your password'
+    },
+  },
 
   redis: {
     client: {

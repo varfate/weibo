@@ -41,8 +41,8 @@ export default {
         data: {
           email: this.email,
         },
-      })
-        .then(this.changeBtnStatus)
+      }).then(this.changeBtnStatus)
+        // eslint-disable-next-line
         .catch(console.log);
     },
     changeBtnStatus() {

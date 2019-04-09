@@ -1,7 +1,7 @@
 'use strict';
 
 // 注册
-const signUpRules = {
+const registerRules = {
   email: {
     type: 'email',
     max: 50,
@@ -15,5 +15,5 @@ const signUpRules = {
 };
 
 module.exports = {
-  signUpRules,
+  registerRules,
 };

@@ -1,3 +1,8 @@
 {
-  "extends": "eslint-config-egg"
+  "extends": "eslint-config-egg",
+  "globals": {
+    "DEV": true,
+    "info": true,
+    "use": true
+  }
 }

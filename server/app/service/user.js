@@ -11,7 +11,7 @@ class UserService extends Service {
   }
 
   /**
-   * 通过邮箱检查用户是否存在
+   * * 通过邮箱检查用户是否存在
    *
    * @param {String} email 用户邮箱
    * @memberof UserService
@@ -34,7 +34,7 @@ class UserService extends Service {
   }
 
   /**
-   * 检查验证码是否正确
+   * * 检查验证码是否正确
    *
    * @memberof UserService
    */

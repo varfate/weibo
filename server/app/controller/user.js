@@ -1,6 +1,7 @@
 'use strict';
 
-const { signUpRules } = require('../schemas/user');
+const { registerRules } = require('../schemas/user');
+const _ = require('lodash');
 
 const Controller = require('./base/rest');
 
@@ -9,11 +10,11 @@ class UserController extends Controller {
     super(ctx, 'User');
   }
 
-  async signUp() {
+  async register() {
     const { ctx } = this;
     const { service } = ctx;
     // 验证参数
-    ctx.validate(signUpRules, ctx.request.body);
+    ctx.validate(registerRules, ctx.request.body);
     await service.user.checkExist();
     await service.user.checkVerifyCode();
     await this.create();
@@ -31,11 +32,7 @@ class UserController extends Controller {
     }
   }
 
-  async signIn() {
-    // const { ctx } = this.ctx;
-  }
-
-  async signOut() {
+  async logout() {
     // d
   }
 }

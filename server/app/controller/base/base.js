@@ -3,6 +3,12 @@
 const { Controller } = require('egg');
 
 class BaseController extends Controller {
+  /**
+   * * 操作成功
+   *
+   * @param {Object} [option={}] 选项
+   * @memberof BaseController
+   */
   ok(option = {}) {
     const { status, data, message } = option;
     this.ctx.body = {
@@ -11,6 +17,12 @@ class BaseController extends Controller {
     };
     this.ctx.status = status || 200;
   }
+  /**
+   * * 失败
+   *
+   * @param {Object} [option={}] 选项
+   * @memberof BaseController
+   */
   fail(option = {}) {
     const { status, data, message } = option;
     this.ctx.body = {

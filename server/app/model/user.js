@@ -1,5 +1,18 @@
 'use strict';
 
+const bcrypt = require('bcrypt');
+
+/**
+ * * 加密密码
+ *
+ * @param {User} user 用户实例
+ */
+const hashPassword = async user => {
+  if (!user.changed('password')) return;
+  const salt = await bcrypt.genSaltSync(10);
+  user.password = await bcrypt.hash(user.get('password'), salt);
+};
+
 module.exports = app => {
   const { STRING, INTEGER, ENUM } = app.Sequelize;
   const User = app.model.define('user', {
@@ -59,7 +72,32 @@ module.exports = app => {
       type: Date,
       allowNull: false,
     },
+  }, {
+    hooks: {
+      beforeSave: [
+        hashPassword,
+      ],
+    },
   });
+  /**
+   * * 验证邮箱密码
+   *
+   * @param {String} email 邮箱
+   * @param {String} password 加密前的密码
+   * @return { Boolean} 邮箱密码是否匹配
+   */
+  User.Auth = async function(email, password) {
+    const user = await this.findOne({
+      where: {
+        email,
+        isDelete: 'n',
+      },
+    });
+    if (user && await bcrypt.compare(password, user.password)) {
+      return user;
+    }
+    return false;
+  };
   User.writableCols = [
     'email', 'gender', 'password', 'username', 'avatar', 'isDelete', 'description',
   ];

@@ -3,11 +3,11 @@ import './cube-ui';
 import App from './App.vue';
 import router from './router';
 import store from './store';
-import axios from './lib/axios';
-import './styles/index.styl';
+import { axiosInstance } from './lib/axios';
 
 Vue.config.productionTip = false;
-Vue.prototype.$axios = axios;
+
+Vue.prototype.$axios = axiosInstance;
 
 
 new Vue({

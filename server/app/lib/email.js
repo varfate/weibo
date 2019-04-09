@@ -14,6 +14,12 @@ class Email {
     this.transporter = this.createTransporter();
   }
 
+  /**
+   * * 创建 nodemailer 实例
+   *
+   * @return {Instance} nodemailer 实例
+   * @memberof Email
+   */
   createTransporter() {
     const { config, app } = this;
     assert(
@@ -28,6 +34,12 @@ class Email {
     return transporter;
   }
 
+  /**
+   * * 发送邮件
+   *
+   * @param {Object} option mail option
+   * @memberof Email
+   */
   sender(option) {
     const _option = Object.assign({
       from: this.config.from,
@@ -36,6 +48,11 @@ class Email {
   }
 }
 
+/**
+ * * 把 email 挂载到 app 上
+ *
+ * @param {*} app egg app
+ */
 module.exports = app => {
   app.email = new Email(app);
 };
