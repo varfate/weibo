@@ -10,5 +10,7 @@ module.exports = app => {
   }));
   // 发送验证码
   router.post('/email/verifyCode', 'user.sendVerifyCode');
+  // blog
+  router.resources('blog', '/blogs', 'blog');
 };
 

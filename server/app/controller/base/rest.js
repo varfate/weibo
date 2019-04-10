@@ -62,7 +62,8 @@ class RestController extends Controller {
    */
   async create() {
     const { ctx } = this;
-    const attrs = _.pick(ctx.request.body, this.model.writableCols);
+    const params = Object.assign({}, ctx.request.body, ctx.params);
+    const attrs = _.pick(params, this.model.writableCols);
     let data = await this.model.create(attrs);
     data = _.omit(data.toJSON(), [ 'password' ]);
     this.ok({ data });

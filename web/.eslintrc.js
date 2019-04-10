@@ -11,7 +11,8 @@ module.exports = {
     '@vue/airbnb',
   ],
   rules: {
-    'no-plusplus': 0
+    'no-plusplus': 0,
+    "consistent-return": 0
   },
   parserOptions: {
     parser: 'babel-eslint',

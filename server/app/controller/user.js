@@ -1,7 +1,6 @@
 'use strict';
 
 const { registerRules } = require('../schemas/user');
-const _ = require('lodash');
 
 const Controller = require('./base/rest');
 
@@ -31,10 +30,9 @@ class UserController extends Controller {
       this.fail();
     }
   }
+  // eslint-disable-next-line
+  async logout() {}
 
-  async logout() {
-    // d
-  }
 }
 
 module.exports = UserController;

@@ -18,7 +18,7 @@ module.exports = {
       stylus: {
         'resolve url': true,
         import: [
-          './src/styles/index.styl',
+          './src/styles/theme.styl',
         ],
       },
     },

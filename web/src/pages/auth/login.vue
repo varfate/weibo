@@ -64,15 +64,20 @@ export default {
     };
   },
   methods: {
-    submitHandler(e) {
+    async submitHandler(e) {
       e.preventDefault();
-      this.$axios.post('/user/login', {
-        ...this.model,
-      }).then((res) => {
-        const { token } = res.data.data;
-        setToken(token);
-        // eslint-disable-next-line
-      }).catch(console.log);
+
+      const ret = await this.$axios({
+        method: 'POST',
+        url: '/user/login',
+        data: {
+          ...this.model,
+        },
+      });
+      if (ret.success) {
+        const { token } = ret.data;
+        setToken(`Bearer ${token}`);
+      }
     },
   },
 };

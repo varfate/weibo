@@ -82,18 +82,16 @@ export default {
     VerifyCodeBtn,
   },
   methods: {
-    submitHandler(e) {
+    async submitHandler(e) {
       e.preventDefault();
-      this.$axios({
+      const ret = await this.$axios({
         url: '/user/register',
-        method: 'post',
+        method: 'POST',
         data: {
           ...this.model,
         },
-      }).then(() => {
-        this.$route.push('/');
-      // eslint-disable-next-line
-      }).catch(console.log);
+      });
+      if (ret.success) this.$route.push('/');
     },
   },
 };

@@ -31,19 +31,20 @@ export default {
     };
   },
   methods: {
-    handleClick(e) {
+    async handleClick(e) {
       e.preventDefault();
       e.stopPropagation();
       if (!this.email) return;
-      this.$axios({
+      const ret = await this.$axios({
         url: '/email/verifyCode',
-        method: 'post',
+        method: 'POST',
         data: {
           email: this.email,
         },
-      }).then(this.changeBtnStatus)
-        // eslint-disable-next-line
-        .catch(console.log);
+      });
+      if (ret.success) {
+        this.changeBtnStatus();
+      }
     },
     changeBtnStatus() {
       if (this.remainTime) return;
