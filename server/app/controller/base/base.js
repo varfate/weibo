@@ -6,6 +6,7 @@ class BaseController extends Controller {
   /**
    * * 操作成功
    *
+   * @author Fate
    * @param {Object} [option={}] 选项
    * @memberof BaseController
    */
@@ -20,6 +21,7 @@ class BaseController extends Controller {
   /**
    * * 失败
    *
+   * @author Fate
    * @param {Object} [option={}] 选项
    * @memberof BaseController
    */

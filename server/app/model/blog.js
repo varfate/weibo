@@ -1,3 +1,10 @@
+/*
+ * @Description: Blog model
+ * @Author: Fate
+ * @LastEditors: Fate
+ * @Date: 2019-04-10 15:37:52
+ * @LastEditTime: 2019-04-12 20:04:54
+ */
 'use strict';
 
 module.exports = app => {
@@ -40,6 +47,19 @@ module.exports = app => {
       defaultValue: '微博 weibo.com',
       comments: '来源',
     },
+    files: {
+      type: TEXT,
+      allowNull: false,
+      defaultValue: '',
+      comments: '图片视频等,以逗号分隔',
+      get() {
+        const files = this.getDataValue('files');
+        if (files) {
+          return files.split(',').map(path => app.config.FILE_BASE_URL + path);
+        }
+        return [];
+      },
+    },
     createdAt: {
       type: DATE,
       allowNull: false,
@@ -50,10 +70,10 @@ module.exports = app => {
     },
   });
   Blog.writableCols = [
-    'text', 'userId', 'source',
+    'text', 'userId', 'source', 'files',
   ];
   Blog.editableCols = [
-    'text', 'source',
+    'text', 'source', 'files',
   ];
   return Blog;
 };

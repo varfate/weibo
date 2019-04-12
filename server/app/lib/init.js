@@ -5,6 +5,7 @@ const path = require('path');
 /**
  * * require 的相对路径版
  *
+ * @author Fate
  * @param {String} baseDir app.js 所在路径
  */
 exports.initGlobal = baseDir => {
@@ -13,6 +14,7 @@ exports.initGlobal = baseDir => {
     /**
      * * 挂载 use 到 global 上
      *
+     * @author Fate
      * @param {String} dir '.' 分隔 ex: app.lib.xxx
      * @return {Any} 引入的文件
      */

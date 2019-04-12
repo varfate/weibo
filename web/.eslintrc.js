@@ -12,7 +12,8 @@ module.exports = {
   ],
   rules: {
     'no-plusplus': 0,
-    "consistent-return": 0
+    "consistent-return": 0,
+    "no-param-reassign": 0
   },
   parserOptions: {
     parser: 'babel-eslint',

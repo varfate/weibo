@@ -14,7 +14,7 @@ class UserController extends Controller {
     const { service } = ctx;
     // 验证参数
     ctx.validate(registerRules, ctx.request.body);
-    await service.user.checkExist();
+    await service.user.checkEmailExist();
     await service.user.checkVerifyCode();
     await this.create();
   }
@@ -22,7 +22,7 @@ class UserController extends Controller {
   async sendVerifyCode() {
     const { ctx } = this;
     const { service } = ctx;
-    await service.user.checkExist();
+    await service.user.checkEmailExist();
     const sendStatus = await service.email.sendVerifyCode();
     if (sendStatus) {
       this.ok();

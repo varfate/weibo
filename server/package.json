@@ -8,6 +8,7 @@
     "debug": "^4.1.1",
     "egg": "2.10.0",
     "egg-jwt": "^3.1.6",
+    "egg-multipart": "^2.4.0",
     "egg-nodemailer": "^1.0.0",
     "egg-passport": "^2.0.1",
     "egg-passport-local": "^1.2.1",
@@ -18,8 +19,11 @@
     "egg-view-nunjucks": "^2.2.0",
     "egg-y-validator": "^1.2.0",
     "lodash": "^4.17.11",
+    "md5": "^2.2.1",
     "mysql2": "^1.6.5",
-    "nodemailer": "^5.1.1"
+    "nodemailer": "^5.1.1",
+    "nos-node-sdk": "^0.0.5",
+    "uuid": "^3.3.2"
   },
   "devDependencies": {
     "autod": "^3.0.1",
@@ -41,8 +45,7 @@
     "debug": "egg-bin debug",
     "cov": "egg-bin cov",
     "ci": "npm run lint && NODE_ENV=test npx sequelize db:migrate && npm run cov",
-    "db_up": "npx sequelize db:migrate",
-    "db_undo": "npx sequelize db:migrate:undo"
+    "db_up": "npx sequelize db:migrate"
   },
   "ci": {
     "version": "8"

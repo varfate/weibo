@@ -12,5 +12,7 @@ module.exports = app => {
   router.post('/email/verifyCode', 'user.sendVerifyCode');
   // blog
   router.resources('blog', '/blogs', 'blog');
+  // 文件
+  router.post('/files', 'file.upload');
 };
 

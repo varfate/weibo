@@ -4,6 +4,7 @@ module.exports = {
   /**
    * * 生成 token
    *
+   * @author Fate
    * @param {Object} user 用户数据
    * @param {Boolean} rememberMe 是否记住登录状态
    * @return {String} token
@@ -14,5 +15,7 @@ module.exports = {
     });
     return token;
   },
+
+
 };
 

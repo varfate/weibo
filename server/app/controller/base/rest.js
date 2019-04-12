@@ -12,6 +12,7 @@ class RestController extends Controller {
   /**
    * * 修改和删除的验证接口
    *
+   * @author Fate
    * @param {Number} id model id
    * @return {Model} model instance
    * @memberof RestController
@@ -25,6 +26,7 @@ class RestController extends Controller {
   /**
    * * LIST
    *
+   * @author Fate
    * @param {ctx} ctx 上下文
    * @param {Object} where where
    * @param {Array} order 排序
@@ -58,11 +60,13 @@ class RestController extends Controller {
   /**
    * * 创建
    *
+   * @author Fate
+   * @param {Object} option 参数
    * @memberof RestController
    */
-  async create() {
+  async create(option) {
     const { ctx } = this;
-    const params = Object.assign({}, ctx.request.body, ctx.params);
+    const params = Object.assign({}, ctx.request.body, ctx.params, option);
     const attrs = _.pick(params, this.model.writableCols);
     let data = await this.model.create(attrs);
     data = _.omit(data.toJSON(), [ 'password' ]);
@@ -73,6 +77,7 @@ class RestController extends Controller {
   /**
    * * 展示一条
    *
+   * @author Fate
    * @memberof RestController
    */
   async show() {
@@ -84,6 +89,7 @@ class RestController extends Controller {
   /**
    * * 更新
    *
+   * @author Fate
    * @memberof RestController
    */
   async update() {
@@ -98,6 +104,7 @@ class RestController extends Controller {
   /**
    * * 删除
    *
+   * @author Fate
    * @memberof RestController
    */
   async destroy() {

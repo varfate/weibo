@@ -1,3 +1,10 @@
+/*
+ * @Description: In User Settings Edit
+ * @Author: your name
+ * @LastEditors: Please set LastEditors
+ * @Date: 2019-03-18 17:56:20
+ * @LastEditTime: 2019-04-12 15:19:57
+ */
 'use strict';
 const assert = require('assert');
 const nodemailer = require('nodemailer');
@@ -17,6 +24,7 @@ class Email {
   /**
    * * 创建 nodemailer 实例
    *
+   * @author Fate
    * @return {Instance} nodemailer 实例
    * @memberof Email
    */
@@ -37,6 +45,7 @@ class Email {
   /**
    * * 发送邮件
    *
+   * @author Fate
    * @param {Object} option mail option
    * @memberof Email
    */
@@ -51,7 +60,8 @@ class Email {
 /**
  * * 把 email 挂载到 app 上
  *
- * @param {*} app egg app
+ * @author Fate
+ * @param {App} app egg app
  */
 module.exports = app => {
   app.email = new Email(app);

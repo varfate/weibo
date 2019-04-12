@@ -1,3 +1,10 @@
+/*
+ * @Description: 初始化表 blog
+ * @Author: Fate
+ * @LastEditors: Fate
+ * @Date: 2019-04-10 14:32:50
+ * @LastEditTime: 2019-04-12 20:04:40
+ */
 'use strict';
 
 module.exports = {
@@ -31,6 +38,11 @@ module.exports = {
       allowNull: false,
       defaultValue: '微博 weibo.com',
       comments: '来源',
+    },
+    files: {
+      type: TEXT,
+      allowNull: true,
+      comments: '图片视频等',
     },
     isDelete: {
       type: ENUM('n', 'y'),

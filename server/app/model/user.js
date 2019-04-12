@@ -5,6 +5,7 @@ const bcrypt = require('bcrypt');
 /**
  * * 加密密码
  *
+ * @author Fate
  * @param {User} user 用户实例
  */
 const hashPassword = async user => {
@@ -82,6 +83,7 @@ module.exports = app => {
   /**
    * * 验证邮箱密码
    *
+   * @author Fate
    * @param {String} email 邮箱
    * @param {String} password 加密前的密码
    * @return { Boolean} 邮箱密码是否匹配

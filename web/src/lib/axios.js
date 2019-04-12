@@ -1,7 +1,8 @@
 import axios from 'axios';
+import { API_ROOT } from '@/config';
 
 export const axiosInstance = axios.create({
-  baseURL: 'http://dev.weibo.com/api/v1',
+  baseURL: API_ROOT,
   headers: {
     'Content-Type': 'application/json',
     Authorization: localStorage.token || '',
@@ -14,7 +15,7 @@ export const setToken = (token) => {
 };
 
 
-export async function $axios(options) {
+export async function $axios(options, showToast = true) {
   let ret = {};
   try {
     this.toast = this.$createToast({
@@ -23,7 +24,7 @@ export async function $axios(options) {
       mask: true,
       time: 0,
     });
-    this.toast.show();
+    if (showToast) this.toast.show();
     const response = await axiosInstance(options);
     this.toast.hide();
     const { statusText, status, data } = response;

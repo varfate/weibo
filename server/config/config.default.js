@@ -1,3 +1,10 @@
+/*
+ * @Description: 默认配置
+ * @Author: Fate
+ * @LastEditors: Fate
+ * @Date: 2019-03-08 16:51:25
+ * @LastEditTime: 2019-04-12 20:05:46
+ */
 'use strict';
 
 const chalk = require('chalk');
@@ -58,4 +65,25 @@ module.exports = appInfo => ({
     usernameField: 'email',
     passwordField: 'password',
   },
+
+  // 对象存储
+  nos: {
+    // accessKeyId: '',
+    // accessKeySecret: '',
+    // bucket: '',
+    // endpoint: '',
+    // timeout: '',
+  },
+
+  multipart: {
+    whitelist: [
+      '.jpg',
+      '.png',
+      '.gif',
+    ],
+    fileSize: '1mb',
+  },
+
+  FILE_BASE_URL: 'https://doyoulike.nos-eastchina1.126.net/',
+
 });
