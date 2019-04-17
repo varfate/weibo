@@ -3,12 +3,20 @@
  * @Author: Fate
  * @LastEditors: Fate
  * @Date: 2019-03-08 16:51:25
- * @LastEditTime: 2019-04-12 20:05:46
+ * @LastEditTime: 2019-04-17 17:13:30
  */
 'use strict';
 
 const chalk = require('chalk');
 const _ = require('lodash');
+
+const fs = require('fs');
+const path = require('path');
+const resolve = _path => path.resolve(__dirname, _path);
+const extend = fs.readdirSync(resolve('./extend'));
+const extendConfigs = extend.reduce((memo, item) => {
+  return Object.assign({}, memo, require(`./extend/${item}`));
+}, {});
 
 module.exports = appInfo => ({
 
@@ -18,11 +26,10 @@ module.exports = appInfo => ({
 
   sequelize: {
     dialect: 'mysql',
-    username: 'root',
-    password: 'root',
+    username: 'qi',
     hostname: '127.0.0.1',
     port: 3306,
-    database: 'weibo_product',
+    database: 'weibo_production',
     define: {
       freezeTableName: true,
       underscored: false,
@@ -48,7 +55,7 @@ module.exports = appInfo => ({
     secret: '123456',
     enable: true,
     ignore(ctx) {
-      const paths = [ '/user/login', '/user/register' ];
+      const paths = [ '/user/login', '/user/register', '/email/verifyCode' ];
       if (DEV) {
         const tip = `${chalk.yellow('[ JWT ]')} --> ${
           _.includes(paths, ctx.path)
@@ -75,6 +82,28 @@ module.exports = appInfo => ({
     // timeout: '',
   },
 
+  email: {
+    host: 'smtp.163.com',
+    port: 465,
+    secureConnection: true,
+    from: 'do_you_like@163.com',
+    connectionTimeout: 30 * 1000,
+    auth: {
+      user: 'do_you_like@163.com',
+      // pass: 'your password'
+    },
+  },
+
+  redis: {
+    client: {
+      host: '127.0.0.1',
+      port: 6379,
+      password: 'QmxiUm$!Lv&!w@aj',
+      db: 0,
+      keyPrefix: 'weibo:',
+    },
+  },
+
   multipart: {
     whitelist: [
       '.jpg',
@@ -84,6 +113,5 @@ module.exports = appInfo => ({
     fileSize: '1mb',
   },
 
-  FILE_BASE_URL: 'https://doyoulike.nos-eastchina1.126.net/',
-
+  ...extendConfigs,
 });

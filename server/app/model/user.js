@@ -1,3 +1,10 @@
+/*
+ * @Description: Description
+ * @Author: Fate
+ * @LastEditors: Fate
+ * @Date: 2019-03-13 16:51:45
+ * @LastEditTime: 2019-04-16 19:47:12
+ */
 'use strict';
 
 const bcrypt = require('bcrypt');
@@ -36,34 +43,37 @@ module.exports = app => {
     followCount: {
       type: INTEGER(10).UNSIGNED,
       defaultValue: 0,
-      comments: '关注人数',
+      comment: '关注人数',
     },
     fansCount: {
       type: INTEGER(10).UNSIGNED,
       defaultValue: 0,
-      comments: '粉丝人数',
+      comment: '粉丝人数',
     },
     gender: {
       type: ENUM('m', 'w', ''),
       defaultValue: '',
       allowNull: false,
-      comments: '性别',
+      comment: '性别',
     },
     description: {
       type: STRING(1024),
       allowNull: false,
       defaultValue: '',
-      comments: '描述',
+      comment: '描述',
     },
     avatar: {
       type: STRING,
-      isUrl: true,
       comment: '头像',
+      get() {
+        const { NOS_FILE_BASE_URL, NOS_AVATAR_PATH } = app.config;
+        return `${NOS_FILE_BASE_URL}/${NOS_AVATAR_PATH}/${this.getDataValue('avatar')}`;
+      },
     },
     password: {
       type: STRING,
       allowNull: false,
-      comments: '密码',
+      comment: '密码',
     },
     createdAt: {
       type: Date,

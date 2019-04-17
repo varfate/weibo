@@ -1,3 +1,5 @@
+@import './theme';
+
 .disabled
   opacity .5
 
@@ -13,3 +15,16 @@
 
 .f-r
   float right
+
+.b-b
+  position relative
+  &::after
+    position absolute
+    left 0
+    bottom 0
+    content ''
+    height 1px
+    width 100%
+    background $color-light-grey
+    transform scaleY(.5)
+    

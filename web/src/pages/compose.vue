@@ -114,7 +114,7 @@ export default {
         },
       });
       // eslint-disable-next-line
-      if (ret.succuss) this.$route.push('/blog');
+      if (ret.succuss) this.$router.push('/blog');
     },
 
     /**

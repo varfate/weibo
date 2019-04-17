@@ -20,37 +20,37 @@ module.exports = {
     name: {
       type: STRING,
       allowNull: false,
-      comments: '文件名',
+      comment: '文件名',
     },
     creatorId: {
       type: INTEGER,
       allowNull: false,
-      comments: '上传者',
+      comment: '上传者',
     },
     extension: {
       type: STRING,
       allowNull: false,
-      comments: '扩展名',
+      comment: '扩展名',
     },
     key: {
       type: STRING,
       allowNull: false,
-      comments: '在桶中的标识,通过此标识获取文件',
+      comment: '在桶中的标识,通过此标识获取文件',
     },
     hash: {
       type: STRING,
       allowNull: false,
-      comments: 'md5 值',
+      comment: 'md5 值',
     },
     bytes: {
       type: INTEGER,
       allowNull: false,
-      comments: '字节数',
+      comment: '字节数',
     },
     mimeType: {
       type: STRING,
       allowNull: false,
-      comments: 'mimeType',
+      comment: 'mimeType',
     },
     createdAt: {
       type: DATE,

@@ -1,3 +1,10 @@
+/*
+ * @Description: Init user table
+ * @Author: Fate
+ * @LastEditors: Fate
+ * @Date: 2019-03-12 19:46:29
+ * @LastEditTime: 2019-04-15 16:23:08
+ */
 'use strict';
 
 module.exports = {
@@ -24,37 +31,36 @@ module.exports = {
       type: INTEGER(10).UNSIGNED,
       allowNull: false,
       defaultValue: 0,
-      comments: '关注人数',
+      comment: '关注人数',
     },
     fansCount: {
       type: INTEGER(10).UNSIGNED,
       allowNull: false,
       defaultValue: 0,
-      comments: '粉丝人数',
+      comment: '粉丝人数',
     },
     gender: {
       type: ENUM('', 'm', 'f'),
       allowNull: false,
-      comments: '性别',
+      comment: '性别',
       defaultValue: '',
     },
     description: {
       type: STRING(1024),
       allowNull: false,
       defaultValue: '',
-      comments: '描述',
+      comment: '描述',
     },
     avatar: {
       type: STRING,
-      isUrl: true,
       allowNull: false,
-      defaultValue: '',
+      defaultValue: 'base/01.jpg',
       comment: '头像',
     },
     password: {
       type: STRING,
       allowNull: false,
-      comments: '密码',
+      comment: '密码',
     },
     isDelete: {
       type: ENUM('n', 'y'),

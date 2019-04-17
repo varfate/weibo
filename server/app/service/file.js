@@ -3,8 +3,9 @@
  * @Author: Fate
  * @LastEditors: Fate
  * @Date: 2019-04-10 20:49:52
- * @LastEditTime: 2019-04-12 19:19:05
+ * @LastEditTime: 2019-04-16 19:54:05
  */
+
 'use strict';
 
 const Service = require('egg').Service;
@@ -55,10 +56,10 @@ class FileService extends Service {
     const filename = path.basename(stream.filename);
     const extension = path.extname(filename).toLowerCase();
     const userId = ctx.state.user.id;
-    const key = `weibo/${userId}-${uuidv1()}${extension}`;
+    const key = `${userId}-${uuidv1()}${extension}`;
     const map = {
       bucket: config.nos.bucket, // 桶名
-      key, // 对象名
+      key: `${config.NOS_PIC_PATH}/${key}`, // 对象名
       body: stream, // 上传的流
       length: bytes, // 文件大小
     };
@@ -74,12 +75,11 @@ class FileService extends Service {
 
     return new Promise((resolve, reject) => {
       try {
-        this.nosClient.put_object_stream(map, result => {
+        this.nosClient.put_object_stream(map, () => {
           stream.destroy();
-          const { headers } = result;
           resolve({
             name: filename,
-            key: headers['x-nos-object-name'],
+            key,
             extension,
             creatorId: userId,
             bytes,

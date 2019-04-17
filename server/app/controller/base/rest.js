@@ -1,3 +1,10 @@
+/*
+ * @Description: Rest Api Base Controller
+ * @Author: Fate
+ * @LastEditors: Fate
+ * @Date: 2019-03-08 16:51:25
+ * @LastEditTime: 2019-04-15 15:46:00
+ */
 'use strict';
 
 const _ = require('lodash');
@@ -27,30 +34,35 @@ class RestController extends Controller {
    * * LIST
    *
    * @author Fate
-   * @param {ctx} ctx 上下文
    * @param {Object} where where
    * @param {Array} order 排序
    * @param {Array} include 包含
    * @memberof RestController
    */
-  async index(ctx) {
-    const { page, maxResults, attributes } = ctx.query;
-    const opt = {};
-    opt.where = { isDelete: 'n' };
-
-    // opt.order = order || [];
-    // opt.include = include || [];
-    opt.offset = parseInt(page) * parseInt(maxResults) || 0;
-    opt.limit = +maxResults || ctx.app.config.maxResults;
+  async index() {
+    const { ctx, app } = this;
+    const { page, maxResults, attributes, showAll } = ctx.query;
+    const opt = { where: {} };
+    const limit = +maxResults || app.config.MAX_RESULTS;
+    opt.offset = parseInt(page) * limit || 0;
+    opt.limit = limit;
+    if (this.model.rawAttributes.isDelete && !showAll) {
+      opt.where.isDelete = 'n';
+    }
     if (attributes) {
       opt.attributes = attributes.split(',');
     }
     const countOpt = {};
+    // 关联数据
+    if (this.model.includes) {
+      opt.include = this.model.includes();
+      opt.include.attributes = _.without(
+        Object.keys(opt.include.model.rawAttributes),
+        'password'
+      );
+    }
     // 计算总数
     countOpt.where = opt.where;
-    if (opt.include) {
-      countOpt.include = opt.include;
-    }
     const count = await this.model.count(countOpt);
     ctx.set('X-Content-Record-Total', count);
     const data = await this.model.findAll(opt);

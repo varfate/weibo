@@ -39,6 +39,8 @@
     "node": ">=10.0.0"
   },
   "scripts": {
+    "start": "egg-scripts start --daemon",
+    "stop": "egg-scripts stop",
     "autod": "autod",
     "lint": "eslint .",
     "test": "egg-bin test",

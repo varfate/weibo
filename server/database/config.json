@@ -1,4 +1,14 @@
 {
+  "production": {
+    "username": "qi",
+    "password": "Pq8l!gZ&PU#WdkZk",
+    "database": "weibo_production",
+    "host": "127.0.0.1",
+    "dialect": "mysql",
+    "freezeTableName": true,
+    "underscored": false,
+    "operatorsAliases": false
+  },
   "development": {
     "username": "root",
     "password": "root",

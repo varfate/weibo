@@ -91,7 +91,7 @@ export default {
           ...this.model,
         },
       });
-      if (ret.success) this.$route.push('/');
+      if (ret.success) this.$router.push('/');
     },
   },
 };
