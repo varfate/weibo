@@ -1,3 +1,10 @@
+/*
+ * @Description: Description
+ * @Author: Fate
+ * @LastEditors: Fate
+ * @Date: 2019-03-08 16:51:25
+ * @LastEditTime: 2019-04-18 14:47:08
+ */
 import Vue from 'vue';
 import Router from 'vue-router';
 
@@ -23,12 +30,18 @@ export default new Router({
       component: () => import('./pages/auth/register'),
     }],
   }, {
-    path: '/compose',
-    name: 'compose',
-    component: () => import('./pages/compose'),
+    path: '/blog/compose',
+    name: 'blogCompose',
+    component: () => import('./pages/blog/compose'),
   }, {
-    path: '/blog',
-    name: 'blog',
-    component: () => import('./pages/blog'),
+    path: '/blogs',
+    name: 'blogList',
+    alias: '/',
+    component: () => import('./pages/blog/list'),
+  }, {
+    path: '*',
+    redirect: {
+      name: 'blogList',
+    },
   }],
 });

@@ -3,7 +3,7 @@
  * @Author: Fate
  * @LastEditors: Fate
  * @Date: 2019-04-10 18:13:23
- * @LastEditTime: 2019-04-17 12:11:59
+ * @LastEditTime: 2019-04-18 15:28:40
  -->
 <template>
   <div>
@@ -13,7 +13,7 @@
       v-for="blog in blogs"
       :key="blog.id"
     >
-      <header class="m-b-s padding-x">
+      <header class="m-b-m padding-x">
         <router-link :to="`/profile/${blog.userId}`" class="avatar">
           <img :src="blog.user.avatar" alt="">
         </router-link>
@@ -32,7 +32,7 @@
           <span>7阅读</span>
         </div>
       </header>
-      <article class="m-b-s">
+      <article class="m-b-m">
         <div class="content m-b-s padding-x" v-html="blog.text"></div>
         <ul class="file-container" v-if="blog.files && blog.files.length">
           <li class="img" v-for="path in blog.files" :key="path">
@@ -101,6 +101,7 @@ export default {
     .username>a
       color $color-dark-grey
     .avatar
+      margin-right 4px
       display block
       flex-basis 40px
       max-width 40px

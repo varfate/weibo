@@ -3,7 +3,7 @@
  * @LastEditors: Fate
  * @Description: 博文编辑发布
  * @Date: 2019-04-09 16:42:50
- * @LastEditTime: 2019-04-12 20:14:47
+ * @LastEditTime: 2019-04-18 14:50:50
  -->
 <template>
   <div class="compose">
@@ -83,6 +83,7 @@ export default {
      * @return {Boolean} true/false
      */
     uploadAllSuccess() {
+      if (!this.pics.length) return true;
       return this.pics.reduce((memo, pic) => memo && pic.status === 'success', true);
     },
   },
@@ -113,8 +114,8 @@ export default {
           files,
         },
       });
-      // eslint-disable-next-line
-      if (ret.succuss) this.$router.push('/blog');
+
+      if (ret.success) this.$router.push({ name: 'blogList' });
     },
 
     /**

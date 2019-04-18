@@ -1,11 +1,31 @@
+<!--
+ * @Description: 登录
+ * @Author: Fate
+ * @LastEditors: Fate
+ * @Date: 2019-03-14 12:05:34
+ * @LastEditTime: 2019-04-18 15:15:14
+ -->
 <template>
-  <cube-form
-    :model="model"
-    :schema="schema"
-    :immediate-validate="false"
-    :options="options"
-    @submit="submitHandler"
-    ></cube-form>
+  <div>
+    <cube-form
+      :model="model"
+      :schema="schema"
+      :immediate-validate="false"
+      :options="options"
+      @submit.prevent="submitHandler"
+      ></cube-form>
+    <div class="t-c">
+      <cube-button
+        :light="true"
+        :outline="true"
+        :inline="true"
+        @click.prevent="register"
+        class="register-btn"
+      >
+        还没账号?快来注册一个吧
+      </cube-button>
+     </div>
+  </div>
 </template>
 
 <script>
@@ -64,9 +84,7 @@ export default {
     };
   },
   methods: {
-    async submitHandler(e) {
-      e.preventDefault();
-
+    async submitHandler() {
       const ret = await this.$axios({
         method: 'POST',
         url: '/user/login',
@@ -78,6 +96,9 @@ export default {
         const { token } = ret.data;
         setToken(`Bearer ${token}`);
       }
+    },
+    register() {
+      this.$router.push({ name: 'register' });
     },
   },
 };

@@ -1,3 +1,10 @@
+<!--
+ * @Description: 注册
+ * @Author: Fate
+ * @LastEditors: Fate
+ * @Date: 2019-03-14 12:05:10
+ * @LastEditTime: 2019-04-18 16:22:38
+ -->
 <template>
   <div>
     <cube-form
@@ -91,7 +98,7 @@ export default {
           ...this.model,
         },
       });
-      if (ret.success) this.$router.push('/');
+      if (ret.success) this.$router.push({ name: 'login' });
     },
   },
 };
