@@ -3,7 +3,7 @@
  * @Author: Fate
  * @LastEditors: Fate
  * @Date: 2019-04-10 15:37:52
- * @LastEditTime: 2019-04-15 16:37:18
+ * @LastEditTime: 2019-04-20 10:51:14
  */
 'use strict';
 
@@ -55,9 +55,9 @@ module.exports = app => {
       get() {
         const files = this.getDataValue('files');
         if (files) {
-          const { NOS_FILE_BASE_URL, NOS_PIC_PATH } = app.config;
+          const { CLIENT_HOST, GET_FILE_API, NOS_PIC_PATH } = app.config;
           return files.split(',').map(path =>
-            `${NOS_FILE_BASE_URL}/${NOS_PIC_PATH}/${path}`
+            `${CLIENT_HOST}${GET_FILE_API}/${NOS_PIC_PATH}/${path}`
           );
         }
         return [];

@@ -31,6 +31,7 @@
 import VerifyCodeBtn from '@/components/verify-code-btn.vue';
 
 export default {
+  name: 'Register',
   data() {
     return {
       model: {

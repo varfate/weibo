@@ -33,6 +33,7 @@ import { setToken } from '@/lib/axios';
 import LoginFooter from '@/components/login-footer.vue';
 
 export default {
+  name: 'Login',
   data() {
     return {
       model: {

@@ -43,7 +43,7 @@ import _trim from 'lodash/trim';
 import _mapValues from 'lodash/mapValues';
 
 export default {
-  name: 'compose',
+  name: 'Compose',
   data() {
     return {
       text: '',

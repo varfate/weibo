@@ -25,4 +25,5 @@ module.exports = {
       keyPrefix: 'weibo:',
     },
   },
+  CLIENT_HOST: 'http://dev.weibo.com',
 };

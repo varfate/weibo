@@ -1,3 +1,10 @@
+/*
+ * @Description: Eslint config
+ * @Author: Fate
+ * @LastEditors: Fate
+ * @Date: 2019-03-08 16:51:25
+ * @LastEditTime: 2019-04-20 10:34:42
+ */
 const vueConfig = require('./vue.config')
 
 module.exports = {
@@ -5,6 +12,7 @@ module.exports = {
   env: {
     node: true
   },
+  // plugins: ['transform-vue-jsx'],
   extends: [
     'plugin:vue/essential',
     'eslint:recommended',
@@ -12,8 +20,15 @@ module.exports = {
   ],
   rules: {
     'no-plusplus': 0,
-    "consistent-return": 0,
-    "no-param-reassign": 0
+    'consistent-return': 0,
+    'no-param-reassign': 0,
+    'no-unused-vars': [
+      'error',
+      {
+        // 这里把 h 忽略掉
+        'argsIgnorePattern': 'h'
+      }
+    ]
   },
   parserOptions: {
     parser: 'babel-eslint',

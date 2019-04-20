@@ -10,6 +10,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "cube-ui": "~1.12.1",
+    "file-saver": "^2.0.1",
     "lodash": "^4.17.11",
     "moment": "^2.24.0",
     "vue": "^2.5.21",
@@ -17,6 +18,8 @@
     "vuex": "^3.0.1"
   },
   "devDependencies": {
+    "@vue/babel-helper-vue-jsx-merge-props": "^1.0.0-beta.3",
+    "@vue/babel-plugin-transform-vue-jsx": "^1.0.0-beta.3",
     "@vue/cli-plugin-babel": "^3.2.0",
     "@vue/cli-plugin-eslint": "^3.2.2",
     "@vue/cli-service": "^3.2.0",

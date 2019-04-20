@@ -1,3 +1,10 @@
+/*
+ * @Description: 用户控制器
+ * @Author: Fate
+ * @LastEditors: Fate
+ * @Date: 2019-03-13 17:06:54
+ * @LastEditTime: 2019-04-19 20:03:17
+ */
 'use strict';
 
 const { registerRules } = require('../schemas/user');
@@ -30,8 +37,6 @@ class UserController extends Controller {
       this.fail();
     }
   }
-  // eslint-disable-next-line
-  async logout() {}
 
 }
 

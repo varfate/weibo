@@ -3,7 +3,7 @@
  * @Author: Fate
  * @LastEditors: Fate
  * @Date: 2019-04-10 18:13:23
- * @LastEditTime: 2019-04-18 15:28:40
+ * @LastEditTime: 2019-04-20 11:06:13
  -->
 <template>
   <div>
@@ -35,8 +35,13 @@
       <article class="m-b-m">
         <div class="content m-b-s padding-x" v-html="blog.text"></div>
         <ul class="file-container" v-if="blog.files && blog.files.length">
-          <li class="img" v-for="path in blog.files" :key="path">
-            <img :src="path" alt="">
+          <li
+            class="img"
+            v-for="(path, index) in blog.files"
+            :key="path"
+            @click="showImagePreview(blog.files, index)"
+          >
+            <img :src="path">
           </li>
         </ul>
       </article>
@@ -52,11 +57,14 @@
 <script>
 import { blogTime } from '@/lib/utils';
 import Header from '@/components/header.vue';
+import ImgPreviewHeader from '@/components/img-preview-header.vue';
 
 export default {
+  name: 'blogList',
   data() {
     return {
       blogs: [],
+      curIndex: 0,
     };
   },
 
@@ -80,6 +88,23 @@ export default {
       }
     },
     blogTime,
+    showImagePreview(imgs, index) {
+      this.curIndex = index;
+      const previewInstance = this.$createImagePreview({
+        imgs,
+        initialIndex: index,
+        // 销毁示例,不然会影响 index
+        onChange: (i) => {
+          this.curIndex = i;
+        },
+        onHide() {
+          previewInstance.remove();
+        },
+      }, h => (
+        <ImgPreviewHeader slot="header" img={imgs[0]} />
+      ));
+      previewInstance.show();
+    },
   },
 };
 </script>
