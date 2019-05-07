@@ -3,7 +3,7 @@
  * @Author: Fate
  * @LastEditors: Fate
  * @Date: 2019-03-13 17:06:54
- * @LastEditTime: 2019-04-19 20:03:17
+ * @LastEditTime: 2019-05-06 19:05:06
  */
 'use strict';
 
@@ -36,6 +36,10 @@ class UserController extends Controller {
     } else {
       this.fail();
     }
+  }
+
+  async session() {
+    this.ok({ data: this.ctx.state.user });
   }
 
 }

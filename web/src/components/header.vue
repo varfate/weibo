@@ -3,13 +3,18 @@
  * @Author: Fate
  * @LastEditors: Fate
  * @Date: 2019-04-16 17:36:51
- * @LastEditTime: 2019-04-18 16:22:54
+ * @LastEditTime: 2019-05-07 11:16:59
  -->
 <template>
   <div class="home-header">
     <header class="header m-y-s">
-      <router-link to="/profile/1">用户</router-link>
-      <div class="search m-x-m p-x-s">大家都在搜: {{kw}}</div>
+      <router-link v-if="user" :to="`/profile/${user.id}`">
+        <img class="avatar" :src="user.avatar" alt="用户">
+      </router-link>
+      <router-link v-else :to="{ name: 'login', query: { from: 'blogs' } }">
+        用户
+      </router-link>
+      <div class="search m-x-m p-x-s">大家都在搜: {{ kw }}</div>
       <router-link to="/blog/compose">发表</router-link>
     </header>
     <div class="tags m-b-m">
@@ -26,6 +31,8 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
+
 export default {
   data() {
     return {
@@ -54,12 +61,21 @@ export default {
       }],
     };
   },
+  computed: {
+    ...mapState({
+      user: state => state.session.user,
+    }),
+  },
 };
 </script>
 
 
 <style lang="stylus" scoped>
 @import '~@/styles/theme'
+.avatar
+  width 30px
+  height 30px
+  border-radius 50%
 .home-header
   margin-left .5%
   margin-right .5%

@@ -1,3 +1,10 @@
+/*
+ * @Description: Axios
+ * @Author: Fate
+ * @LastEditors: Fate
+ * @Date: 2019-03-15 18:37:11
+ * @LastEditTime: 2019-05-06 18:53:38
+ */
 import axios from 'axios';
 import { API_ROOT } from '@/config';
 
@@ -10,10 +17,9 @@ export const axiosInstance = axios.create({
 });
 
 export const setToken = (token) => {
-  axiosInstance.defaults.headers.common.Authorization = token;
+  axiosInstance.defaults.headers.Authorization = token;
   localStorage.token = token;
 };
-
 
 export async function $axios(options, showToast = true) {
   let ret = {};
@@ -36,7 +42,11 @@ export async function $axios(options, showToast = true) {
       ...data,
     };
   } catch (err) {
-    const statusText = (err.response.data && err.response.data.message) || '网络错误,请稍后再试';
+    let statusText = (err.response.data && err.response.data.message) || '网络错误,请稍后再试';
+    if (err.response && err.response.status === 401) {
+      statusText = '请先登录';
+      this.$router.push({ name: 'login' });
+    }
     this.toast = this.$createToast({
       txt: statusText,
       type: 'error',

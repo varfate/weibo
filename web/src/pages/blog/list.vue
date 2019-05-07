@@ -3,7 +3,7 @@
  * @Author: Fate
  * @LastEditors: Fate
  * @Date: 2019-04-10 18:13:23
- * @LastEditTime: 2019-04-20 11:06:13
+ * @LastEditTime: 2019-04-20 11:56:32
  -->
 <template>
   <div>
@@ -39,9 +39,8 @@
             class="img"
             v-for="(path, index) in blog.files"
             :key="path"
-            @click="showImagePreview(blog.files, index)"
           >
-            <img :src="path">
+            <img :src="path" @click.stop.prevent="showImagePreview(blog.files, index)">
           </li>
         </ul>
       </article>

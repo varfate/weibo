@@ -3,11 +3,12 @@
  * @LastEditors: Fate
  * @Description: 博文编辑发布
  * @Date: 2019-04-09 16:42:50
- * @LastEditTime: 2019-04-18 14:50:50
+ * @LastEditTime: 2019-05-06 19:20:47
  -->
 <template>
   <div class="compose">
     <header class="clearfix m-b-l">
+      <Goback />
       <a
         href="javascript:;"
         @click.stop="submitHandler"
@@ -41,6 +42,7 @@
 import { BLOG_MAX_LENGTH, PIC_MAX_SIZE, API_ROOT } from '@/config';
 import _trim from 'lodash/trim';
 import _mapValues from 'lodash/mapValues';
+import Goback from '@/components/goback.vue';
 
 export default {
   name: 'Compose',
@@ -60,6 +62,9 @@ export default {
         }),
       },
     };
+  },
+  components: {
+    Goback,
   },
   computed: {
     /**

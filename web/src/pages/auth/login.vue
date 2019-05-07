@@ -3,7 +3,7 @@
  * @Author: Fate
  * @LastEditors: Fate
  * @Date: 2019-03-14 12:05:34
- * @LastEditTime: 2019-04-18 15:15:14
+ * @LastEditTime: 2019-04-20 11:44:30
  -->
 <template>
   <div>
@@ -96,6 +96,7 @@ export default {
       if (ret.success) {
         const { token } = ret.data;
         setToken(`Bearer ${token}`);
+        this.$router.push('/');
       }
     },
     register() {

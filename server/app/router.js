@@ -8,6 +8,8 @@ module.exports = app => {
   router.post('/user/login', app.passport.authenticate('local', {
     successRedirect: null,
   }));
+  // session
+  router.get('/session', 'user.session');
   // 发送验证码
   router.post('/email/verifyCode', 'user.sendVerifyCode');
   // blog
