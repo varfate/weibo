@@ -3,14 +3,14 @@
  * @Author: Fate
  * @LastEditors: Fate
  * @Date: 2019-04-10 18:13:23
- * @LastEditTime: 2019-04-20 11:56:32
+ * @LastEditTime: 2019-05-07 16:50:12
  -->
 <template>
   <div>
     <Header />
     <div
       class="wb-item-wrap m-b-s p-b-s b-b"
-      v-for="blog in blogs"
+      v-for="(blog) in blogs"
       :key="blog.id"
     >
       <header class="m-b-m padding-x">
@@ -24,12 +24,12 @@
             </router-link>
           </p>
           <p class="info">
-            {{ blogTime(blog.createdAt) }}
+            {{ formatBlogTime(blog.createdAt) }}
             来自 {{ blog.source }}
           </p>
         </h3>
-        <div class="read">
-          <span>7阅读</span>
+        <div class="follow" @click="follow(blog.userId)">
+          <span class="p-x-m"><strong class="f-16">+</strong>关注</span>
         </div>
       </header>
       <article class="m-b-m">
@@ -54,9 +54,10 @@
 </template>
 
 <script>
-import { blogTime } from '@/lib/utils';
+import { formatBlogTime } from '@/lib/utils';
 import Header from '@/components/header.vue';
 import ImgPreviewHeader from '@/components/img-preview-header.vue';
+import { mapState } from 'vuex';
 
 export default {
   name: 'blogList',
@@ -73,6 +74,16 @@ export default {
   components: {
     Header,
   },
+  computed: {
+    ...mapState({
+      user: state => state.session.user,
+    }),
+  },
+  watch: {
+    $route() {
+      this.hidePreview();
+    },
+  },
   methods: {
     async getBlogs() {
       const ret = await this.$axios({
@@ -86,23 +97,36 @@ export default {
         this.blogs = ret.data;
       }
     },
-    blogTime,
+
+    formatBlogTime,
+
     showImagePreview(imgs, index) {
       this.curIndex = index;
-      const previewInstance = this.$createImagePreview({
+      this.previewInstance = this.$createImagePreview({
         imgs,
         initialIndex: index,
         // 销毁示例,不然会影响 index
         onChange: (i) => {
           this.curIndex = i;
         },
-        onHide() {
-          previewInstance.remove();
+        onHide: () => {
+          this.previewInstance.remove();
         },
       }, h => (
-        <ImgPreviewHeader slot="header" img={imgs[0]} />
+        <ImgPreviewHeader slot="header" img={imgs[0]} hidePreview={this.hidePreview} />
       ));
-      previewInstance.show();
+      this.previewInstance.show();
+    },
+
+    hidePreview() {
+      if (this.previewInstance) {
+        this.previewInstance.hide();
+      }
+    },
+
+    follow(userId) {
+      if (userId === this.user.id) return;
+      console.log(`用户${this.user.id} 关注了用户${userId}`);
     },
   },
 };
@@ -143,13 +167,12 @@ export default {
   footer
     a+a
       margin-left 10px
-  .read
+  .follow
     span
       font-size 12px
       color $color-light-grey
       position relative
       left -3px
-      padding 2px 4px
       &:after
         content ''
         width 200%

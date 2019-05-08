@@ -3,11 +3,14 @@
  * @Author: Fate
  * @LastEditors: Fate
  * @Date: 2019-04-19 12:20:41
- * @LastEditTime: 2019-04-20 11:01:07
+ * @LastEditTime: 2019-05-07 16:36:32
  -->
 <template>
   <div class="header">
-    <span @click.stop="download" class="f-r p-a-s">下载</span>
+    <span class="f-r p-a-s">
+      <i class="iconfont icon-download1 m-r-m" @click.stop.prevent="onDownload"></i>
+      <i class="iconfont icon-guanbi" @click.stop.prevent="onClose"></i>
+    </span>
   </div>
 </template>
 
@@ -18,12 +21,20 @@ export default {
   props: {
     img: {
       type: String,
+      required: true,
+    },
+    hidePreview: {
+      type: Function,
+      required: true,
     },
   },
   methods: {
-    download() {
+    onDownload() {
       const filename = this.img.split('/').pop();
       fileSaver.saveAs(this.img, filename);
+    },
+    onClose() {
+      this.hidePreview();
     },
   },
 };

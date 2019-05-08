@@ -3,12 +3,12 @@
  * @Author: Fate
  * @LastEditors: Fate
  * @Date: 2019-04-15 17:13:21
- * @LastEditTime: 2019-04-19 20:09:20
+ * @LastEditTime: 2019-05-07 16:31:47
  */
 import moment from 'moment';
 
 // eslint-disable-next-line
-export const blogTime = (time) => {
+export const formatBlogTime = (time) => {
   const now = new Date();
   const target = new Date(time);
   if (now.getFullYear() - target.getFullYear() > 0) {

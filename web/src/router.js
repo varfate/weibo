@@ -3,7 +3,7 @@
  * @Author: Fate
  * @LastEditors: Fate
  * @Date: 2019-03-08 16:51:25
- * @LastEditTime: 2019-05-06 19:26:24
+ * @LastEditTime: 2019-05-08 19:59:10
  */
 import Vue from 'vue';
 import Router from 'vue-router';
@@ -53,11 +53,14 @@ router.beforeEach(async (to, from, next) => {
     return next();
   }
   if (!localStorage.token) {
-    return next('/auth/login');
+    return next({ name: 'login' });
   }
   if (!store.getters['session/isLogin']) {
-    await store.dispatch('session/getSession');
-    return next();
+    try {
+      await store.dispatch('session/getSession');
+    } catch {
+      return next({ name: 'login' });
+    }
   }
   next();
 });

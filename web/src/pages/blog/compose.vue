@@ -3,19 +3,18 @@
  * @LastEditors: Fate
  * @Description: 博文编辑发布
  * @Date: 2019-04-09 16:42:50
- * @LastEditTime: 2019-05-06 19:20:47
+ * @LastEditTime: 2019-05-07 11:53:36
  -->
 <template>
   <div class="compose">
-    <header class="clearfix m-b-l">
+    <header class="header m-b-l m-x-s">
       <Goback />
-      <a
-        href="javascript:;"
+      <span
         @click.stop="submitHandler"
         :class="['f-r', validate ? '' : 'disabled']"
       >
         发送
-      </a>
+      </span>
     </header>
     <cube-textarea
       :maxlength="maxLength"
@@ -170,3 +169,11 @@ export default {
   },
 };
 </script>
+
+<style lang="stylus" scoped>
+.header
+  display flex
+  height 30px
+  align-items center
+  justify-content space-between
+</style>
