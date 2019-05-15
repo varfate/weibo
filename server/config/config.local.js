@@ -1,12 +1,19 @@
+/*
+ * @Description: Description
+ * @Author: Fate
+ * @LastEditors: Fate
+ * @Date: 2019-03-08 16:51:25
+ * @LastEditTime: 2019-05-09 19:45:56
+ */
 'use strict';
 
 module.exports = {
   sequelize: {
     dialect: 'mysql',
-    username: 'root',
+    username: 'admin',
     password: 'root',
     hostname: '127.0.0.1',
-    port: 3306,
+    port: 13306,
     database: 'weibo_local',
     define: {
       freezeTableName: true,

@@ -1,3 +1,10 @@
+/*
+ * @Description: vue 配置
+ * @Author: Fate
+ * @LastEditors: Fate
+ * @Date: 2019-03-08 16:51:25
+ * @LastEditTime: 2019-05-15 12:17:53
+ */
 const path = require('path');
 
 const resolve = p => path.resolve(__dirname, p);
@@ -29,11 +36,16 @@ module.exports = {
       warnings: false,
       errors: true,
     },
-    /**
-     * ? 开发环境 nginx 配置 $host 后报错
-     * https://github.com/gitpod-io/gitpod/issues/26
-     */
-    disableHostCheck: true,
+    host: 'dev.weibo.com',
+    port: 7000,
+    proxy: {
+      '^/api/v1': {
+        target: 'http://localhost:7001/',
+        pathRewrite: {
+          '^/api/v1': '',
+        },
+      },
+    },
   },
 
   pluginOptions: {
