@@ -3,7 +3,7 @@
  * @Author: Fate
  * @LastEditors: Fate
  * @Date: 2019-03-08 16:51:25
- * @LastEditTime: 2019-04-15 15:46:00
+ * @LastEditTime: 2019-05-17 16:03:50
  */
 'use strict';
 
@@ -41,14 +41,25 @@ class RestController extends Controller {
    */
   async index() {
     const { ctx, app } = this;
-    const { page, maxResults, attributes, showAll } = ctx.query;
+    const { page, maxResults, attributes, showAll, sort } = ctx.query;
     const opt = { where: {} };
+    // 分页
     const limit = +maxResults || app.config.MAX_RESULTS;
     opt.offset = parseInt(page) * limit || 0;
     opt.limit = limit;
-    if (this.model.rawAttributes.isDelete && !showAll) {
+    const rawAttributes = this.model.rawAttributes;
+    // 处理排序
+    if (sort) {
+      const orderType = /^-/.test(sort) ? 'DESC' : 'ASC';
+      const sortKey = sort.replace(/^-/, '');
+      if (rawAttributes.sortKey) {
+        opt.order = [[ sortKey, orderType ]];
+      }
+    }
+    if (rawAttributes.isDelete && !showAll) {
       opt.where.isDelete = 'n';
     }
+    // 需要返回的字段
     if (attributes) {
       opt.attributes = attributes.split(',');
     }

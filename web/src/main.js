@@ -3,7 +3,7 @@
  * @Author: Fate
  * @LastEditors: Fate
  * @Date: 2019-03-08 16:51:25
- * @LastEditTime: 2019-05-06 18:02:59
+ * @LastEditTime: 2019-05-17 15:27:17
  */
 import Vue from 'vue';
 import './cube-ui';

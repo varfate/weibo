@@ -3,7 +3,7 @@
  * @Author: Fate
  * @LastEditors: Fate
  * @Date: 2019-04-10 18:13:23
- * @LastEditTime: 2019-05-07 16:50:12
+ * @LastEditTime: 2019-05-17 16:04:16
  -->
 <template>
   <div>
@@ -33,7 +33,7 @@
         </div>
       </header>
       <article class="m-b-m">
-        <div class="content m-b-s padding-x" v-html="blog.text"></div>
+        <Viewer class="content m-b-s padding-x" :value="blog.text" />
         <ul class="file-container" v-if="blog.files && blog.files.length">
           <li
             class="img"
@@ -58,6 +58,7 @@ import { formatBlogTime } from '@/lib/utils';
 import Header from '@/components/header.vue';
 import ImgPreviewHeader from '@/components/img-preview-header.vue';
 import { mapState } from 'vuex';
+import { Viewer } from '@toast-ui/vue-editor';
 
 export default {
   name: 'blogList',
@@ -73,6 +74,7 @@ export default {
   },
   components: {
     Header,
+    Viewer,
   },
   computed: {
     ...mapState({
@@ -91,6 +93,7 @@ export default {
         url: '/blogs',
         params: {
           include: 'user',
+          sort: '-id',
         },
       });
       if (ret.success) {

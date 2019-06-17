@@ -3,7 +3,7 @@
  * @Author: Fate
  * @LastEditors: Fate
  * @Date: 2019-03-08 16:51:25
- * @LastEditTime: 2019-04-20 10:34:42
+ * @LastEditTime: 2019-05-17 15:27:11
  */
 const vueConfig = require('./vue.config')
 
@@ -22,6 +22,7 @@ module.exports = {
     'no-plusplus': 0,
     'consistent-return': 0,
     'no-param-reassign': 0,
+    // 'import/no-extraneous-dependencies': 0,
     'no-unused-vars': [
       'error',
       {

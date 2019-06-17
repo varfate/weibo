@@ -3,7 +3,7 @@
  * @Author: Fate
  * @LastEditors: Fate
  * @Date: 2019-04-10 15:37:52
- * @LastEditTime: 2019-04-20 10:51:14
+ * @LastEditTime: 2019-05-17 15:35:03
  */
 'use strict';
 
@@ -21,13 +21,14 @@ module.exports = app => {
       allowNull: false,
       comment: '微博内容',
       set(value) {
+        console.log(value);
         const reg = new RegExp('#([^#\\s]+)#');
         let topic = reg.exec(value);
         // 目前一条博文只支持一个话题
         topic = topic ? topic[1] : '';
         this.setDataValue('topic', topic);
-        const val = value.replace(/(\n+)|(\s+)/g, '<br>').replace(/\s+/g, '&nbsp;');
-        this.setDataValue('text', val);
+        // const val = value.replace(/(\n+)|(\s+)/g, '<br>').replace(/\s+/g, '&nbsp;');
+        this.setDataValue('text', value);
       },
     },
     topic: {

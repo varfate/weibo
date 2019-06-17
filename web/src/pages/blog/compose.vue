@@ -3,7 +3,7 @@
  * @LastEditors: Fate
  * @Description: 博文编辑发布
  * @Date: 2019-04-09 16:42:50
- * @LastEditTime: 2019-05-07 11:53:36
+ * @LastEditTime: 2019-06-17 17:09:12
  -->
 <template>
   <div class="compose">
@@ -16,11 +16,10 @@
         发送
       </span>
     </header>
-    <cube-textarea
-      :maxlength="maxLength"
+    <Editor
       v-model="text"
-      :placeholder="'分享新鲜事...'"
-      class="m-b-l"
+      :options="editorOptions"
+      class="m-b-s"
     />
     <cube-upload
       ref="upload"
@@ -38,15 +37,20 @@
 </template>
 
 <script>
-import { BLOG_MAX_LENGTH, PIC_MAX_SIZE, API_ROOT } from '@/config';
 import _trim from 'lodash/trim';
 import _mapValues from 'lodash/mapValues';
+import { BLOG_MAX_LENGTH, PIC_MAX_SIZE, API_ROOT } from '@/config';
 import Goback from '@/components/goback.vue';
+import { Editor } from '@toast-ui/vue-editor';
 
 export default {
   name: 'Compose',
   data() {
     return {
+      editorOptions: {
+        hideModeSwitch: true,
+        language: 'zh_CN',
+      },
       text: '',
       pics: [],
       maxLength: BLOG_MAX_LENGTH,
@@ -64,6 +68,7 @@ export default {
   },
   components: {
     Goback,
+    Editor,
   },
   computed: {
     /**
@@ -99,6 +104,7 @@ export default {
      */
     async submitHandler() {
       if (!this.validate) return;
+      if (!this.pics.length) return this.uploadText();
       this.$refs.upload.start();
       this.$refs.upload.retry();
     },
